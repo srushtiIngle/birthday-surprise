@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You My Love</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      padding: 30px 22px 35px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sticker {
+      position: absolute;
+      font-size: 26px;
+      z-index: 5;
+    }
+    .sticker-1 { top: -12px; left: 15px; transform: rotate(-15deg); }
+    .sticker-2 { top: -8px; right: 18px; transform: rotate(12deg); }
+    .sticker-3 { bottom: 70px; left: 12px; transform: rotate(8deg); }
+    .sticker-4 { bottom: 75px; right: 14px; transform: rotate(-10deg); }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #b33b5c;
+      margin-bottom: 18px;
+    }
+
+    .surprise-text {
+      font-size: 15.5px;
+      color: #5c3d4a;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 18px 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .photos img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .photos img:nth-child(2) {
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+    }
+
+    .bottom-emojis {
+      font-size: 28px;
+      margin-top: 8px;
+    }
+
+    /* Corner Buttons */
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+    .corner-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* Particles */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .heart, .confetti {
+      position: absolute;
+      animation: fall linear forwards;
+    }
+    .heart { font-size: 17px; }
+    .confetti {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* iPhone optimization */
+    @media (max-width: 400px) {
+      .card {
+        padding: 25px 18px 30px;
+      }
+      h2 { font-size: 25px; }
+      .photos img {
+        width: 105px;
+        height: 105px;
+      }
+      .photos img:nth-child(2) {
+        width: 98px;
+        height: 98px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="sticker sticker-1">💖</div>
+    <div class="sticker sticker-2">🌻</div>
+    <div class="sticker sticker-3">✨</div>
+    <div class="sticker sticker-4">🌷</div>
+
+    <p class="small-title">FROM MY HEART</p>
+    <h2>My Love,</h2>
+
+    <p class="surprise-text">
+      On your special day I just want you to know<br>
+      how grateful I am to have you in my life baby.<br><br>
+      You make my every ordinary day feel magical.<br>
+      Thank you for being my peace, my happiness,<br>
+      and my favourite person in the whole world.<br><br>
+      I love you more than words can say. ❤️
+    </p>
+
+    <!-- Photos -->
+    <div class="photos">
+      <img src="images/2986B694-7DF7-4821-AFF1-B7539E9ABB77.jpeg" alt="Our beautiful memory">
+    </div>
+
+    <div class="bottom-emojis">❤️ 🌻</div>
+  </div>
+
+  <!-- Corner Buttons -->
+  <a href="index.html" class="corner-btn back-btn">← Back</a>
+  <a href="page3.html" class="corner-btn next-btn">Next 💕</a>
+
+  <!-- Animation -->
+  <div id="particles"></div>
+
+  <script>
+    createParticles();
+
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      const emojis = ['💖', '💕', '💗', '❤️', '✨', '🌸'];
+      const colors = ['#ff6b9d', '#ff8fab', '#ffb3c6', '#ffc2d4', '#ff9a9e', '#fad0c4'];
+
+      for (let i = 0; i < 35; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '-40px';
+        heart.style.fontSize = (13 + Math.random() * 16) + 'px';
+        heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+        heart.style.animationDelay = Math.random() * 1.5 + 's';
+        particles.appendChild(heart);
+        setTimeout(() => heart.remove(), 8500);
+      }
+
+      for (let i = 0; i < 45; i++) {
+        const conf = document.createElement('div');
+        conf.classList.add('confetti');
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.top = '-20px';
+        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        conf.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+        conf.style.animationDelay = Math.random() * 1.2 + 's';
+        particles.appendChild(conf);
+        setTimeout(() => conf.remove(), 7500);
+      }
+    }
+  </script>
+
+</body>
+</html>

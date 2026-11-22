@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Baby ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe5ef, #ffc2d8, #fff0f5);
+    font-family: Georgia, serif;
+    color: #963d61;
+    text-align: center;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+}
+
+#countdown {
+    font-size: 110px;
+    color: #d64d83;
+    text-shadow: 0 5px 20px white;
+    animation: pop 1s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(.4); opacity: 0; }
+    70% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#cakeScene {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: clamp(25px, 7vw, 40px);
+    color: #bd4778;
+    margin-bottom: 12px;
+}
+
+.message {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.micHint {
+    font-size: 11px;
+    color: #a75a78;
+    margin-bottom: 25px;
+    opacity: .8;
+}
+
+.cake {
+    position: relative;
+    width: 290px;
+    height: 255px;
+    margin: 10px auto 0;
+    cursor: pointer;
+    filter: drop-shadow(0 15px 12px rgba(174,69,111,.18));
+    flex-shrink: 0;
+}
+
+.cake-plate {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 290px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(#fff, #f4cbd9);
+    border: 2px solid white;
+}
+
+.cake-bottom {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    width: 250px;
+    height: 75px;
+    border-radius: 12px 12px 22px 22px;
+    background: linear-gradient(110deg,#f18bb0,#ffd1df,#e879a3);
+    box-shadow: inset 0 -8px 0 rgba(196,65,117,.15);
+}
+
+.icing-drip {
+    position: absolute;
+    top: -3px;
+    width: 100%;
+    height: 22px;
+    background: #fff5f8;
+    border-radius: 50% 50% 10px 10px;
+}
+
+.icing-drip::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    width: 15px;
+    height: 24px;
+    background: #fff5f8;
+    border-radius: 0 0 12px 12px;
+    box-shadow:
+        45px 5px 0 #fff5f8,
+        100px -2px 0 #fff5f8,
+        155px 6px 0 #fff5f8,
+        195px 0 0 #fff5f8;
+}
+
+.cake-decoration {
+    position: absolute;
+    bottom: 19px;
+    width: 100%;
+    text-align: center;
+    color: #fff4f7;
+    font-size: 21px;
+    letter-spacing: 4px;
+}
+
+.pearls {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
+.cake-middle {
+    position: absolute;
+    bottom: 91px;
+    left: 42px;
+    width: 206px;
+    height: 65px;
+    border-radius: 12px 12px 18px 18px;
+    background: linear-gradient(110deg,#ffe4ed,#fff9fb,#f9c3d7);
+    box-shadow: inset 0 -6px 0 #f1a6c2;
+}
+
+.middle-icing {
+    position: absolute;
+    top: -4px;
+    width: 100%;
+    height: 17px;
+    background: white;
+    border-radius: 50%;
+}
+
+.middle-decoration {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    text-align: center;
+    color: #dc6794;
+    font-size: 19px;
+}
+
+.cake-top {
+    position: absolute;
+    bottom: 151px;
+    left: 75px;
+    width: 140px;
+    height: 49px;
+    border-radius: 13px 13px 17px 17px;
+    background: linear-gradient(110deg,#f5a5c2,#ffe4ed,#ed8eb2);
+    box-shadow: inset 0 -5px 0 #df7fa5;
+}
+
+.top-icing {
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    height: 16px;
+    background: #fff8fa;
+    border-radius: 50%;
+}
+
+.cake-heart {
+    position: absolute;
+    top: 17px;
+    width: 100%;
+    text-align: center;
+    color: #c94479;
+    font-size: 23px;
+}
+
+.candle {
+    position: absolute;
+    bottom: 197px;
+    width: 10px;
+    height: 43px;
+    border-radius: 5px;
+    background: repeating-linear-gradient(
+        45deg,
+        white 0 5px,
+        #e77ca3 5px 10px
+    );
+    z-index: 5;
+}
+
+.c1 { left: 112px; }
+.c2 { left: 140px; }
+.c3 { left: 168px; }
+
+.flame {
+    position: absolute;
+    width: 17px;
+    height: 25px;
+    top: -26px;
+    left: -4px;
+    border-radius: 50% 50% 45% 45%;
+    background: radial-gradient(
+        ellipse at 50% 70%,
+        #fffbc0 5%,
+        #ffb52e 50%,
+        #ff6633 100%
+    );
+    filter: drop-shadow(0 0 9px #ffae35);
+    animation: flicker .5s infinite alternate;
+    transform-origin: center bottom;
+}
+
+@keyframes flicker {
+    from { transform: rotate(-6deg) scale(.95); }
+    to { transform: rotate(6deg) scale(1.1); }
+}
+
+.flame.off {
+    display: none;
+}
+
+.smoke {
+    display: none;
+    position: absolute;
+    top: -36px;
+    left: -1px;
+    width: 15px;
+    height: 25px;
+    border-radius: 50%;
+    background: #aaa;
+    filter: blur(5px);
+    animation: smoke 1.5s ease-out forwards;
+}
+
+@keyframes smoke {
+    from {
+        transform: translateY(0) scale(.5);
+        opacity: .7;
+    }
+    to {
+        transform: translateY(-40px) scale(2);
+        opacity: 0;
+    }
+}
+
+#afterWish {
+    display: none;
+    margin-top: 22px;
+    padding: 0 10px;
+    max-width: 650px;
+    animation: pop 1s ease;
+}
+
+#afterWish h2 {
+    font-size: clamp(18px,4vw,24px);
+    line-height: 1.35;
+    color: #bd4778;
+}
+
+#afterWish p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    color: rgba(219,87,140,.35);
+    pointer-events: none;
+    animation: floatHeart linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatHeart {
+    from { transform: translateY(0) rotate(0); opacity: 0; }
+    15% { opacity: 1; }
+    to { transform: translateY(-110vh) rotate(35deg); opacity: 0; }
+}
+
+/* Page 10 covers Page 9 without unloading its music player */
+#page10Frame {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 9999;
+    background: #ffe5ef;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div id="countdown">3</div>
+
+    <div id="cakeScene">
+
+        <h1>Here is your birthday cake, Baby! 🥳</h1>
+
+        <p class="message">
+            Okay baby, now blow the candles..! 💗
+            Tap on candles....
+        </p>
+
+        <p class="micHint">
+            💗
+        </p>
+
+        <div class="cake" id="cake">
+
+            <div class="cake-plate"></div>
+
+            <div class="cake-bottom">
+                <div class="icing-drip"></div>
+                <div class="cake-decoration">♡　♡　♡</div>
+                <div class="pearls">•　•　•　•　•　•</div>
+            </div>
+
+            <div class="cake-middle">
+                <div class="middle-icing"></div>
+                <div class="middle-decoration">♥　♥　♥</div>
+            </div>
+
+            <div class="cake-top">
+                <div class="top-icing"></div>
+                <div class="cake-heart">♥</div>
+            </div>
+
+            <div class="candle c1">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+            </div>
+
+            <div class="candle c2">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+            </div>
+
+            <div class="candle c3">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+            </div>
+
+        </div>
+
+        <div id="afterWish">
+            <h2>
+                Happy Birthday to you, Happy Birthday to you..👏<br><br>
+                Happy Birthday my dear Baby.....! ❤️<br><br>
+                Happy Birthday to you....👏🎂🥳🍾🥂
+            </h2>
+
+            <p>
+                May God give you a healthy and wealthy life, and may all your wishes come true.<br><br>
+                I love you so much baby! 💗
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Keep music on Page 9 while Page 10 is displayed -->
+<audio id="birthdaySong" src="birthday-song.mp3/andriih-happy-birthday-575820.mp3" preload="auto"></audio>
+<!-- Only one Page 10 iframe -->
+<iframe id="page10Frame" src="about:blank"></iframe>
+
+<script>
+const countdown = document.getElementById("countdown");
+const cakeScene = document.getElementById("cakeScene");
+const birthdaySong = document.getElementById("birthdaySong");
+
+/* STOP MUSIC WHEN PAGE 10 FINISHES */
+
+window.addEventListener("message", (event) => {
+
+    // Accept the message only from our own website
+    if (event.origin !== window.location.origin) return;
+
+    if (event.data && event.data.type === "BIRTHDAY_END") {
+
+        // Stop the actual birthday music
+        birthdaySong.pause();
+        birthdaySong.currentTime = 0;
+        birthdaySong.muted = true;
+
+        // Return to the first page, outside the iframe
+        window.location.replace("index.html?replay=1");
+
+    }
+
+});
+
+let candlesBlown = false;
+let micStarted = false;
+let audioStream = null;
+let audioContext = null;
+let analyser = null;
+
+// Floating hearts
+for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = Math.random() > .5 ? "♥" : "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (5 + Math.random() * 7) + "s";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+}
+
+// Countdown
+let number = 3;
+
+const timer = setInterval(() => {
+    number--;
+
+    if (number > 0) {
+        countdown.textContent = number;
+    } else {
+        clearInterval(timer);
+        countdown.style.display = "none";
+        cakeScene.style.display = "flex";
+    }
+}, 1000);
+
+// Start microphone permission from a user gesture
+document.addEventListener("pointerdown", enableFeatures, { once: true });
+
+async function enableFeatures() {
+    if (micStarted) return;
+    micStarted = true;
+
+    try {
+        if (!navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia) {
+            throw new Error("Microphone is not supported here.");
+        }
+
+        audioStream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+                echoCancellation: false,
+                noiseSuppression: false,
+                autoGainControl: false
+            }
+        });
+
+        audioContext = new (
+            window.AudioContext || window.webkitAudioContext
+        )();
+
+        await audioContext.resume();
+
+        const source = audioContext.createMediaStreamSource(audioStream);
+
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 2048;
+        source.connect(analyser);
+
+        detectBlowing();
+
+    } catch (error) {
+        console.log("Microphone unavailable. Cake tap will still work.", error);
+    }
+}
+
+// Detect blowing
+function detectBlowing() {
+    if (!analyser || candlesBlown) return;
+
+    const data = new Uint8Array(analyser.fftSize);
+    let blowStart = null;
+
+    function listen() {
+        if (candlesBlown) return;
+
+        analyser.getByteTimeDomainData(data);
+
+        let sum = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            const value = (data[i] - 128) / 128;
+            sum += value * value;
+        }
+
+        const volume = Math.sqrt(sum / data.length);
+
+        if (volume > 0.13) {
+            if (blowStart === null) {
+                blowStart = Date.now();
+            }
+
+            if (Date.now() - blowStart > 450) {
+                extinguishCandles();
+                return;
+            }
+        } else {
+            blowStart = null;
+        }
+
+        requestAnimationFrame(listen);
+    }
+
+    listen();
+}
+
+// Tap cake as a fallback if microphone doesn't work
+document.getElementById("cake").addEventListener("click", () => {
+    extinguishCandles();
+});
+
+function extinguishCandles() {
+    if (candlesBlown) return;
+
+    candlesBlown = true;
+
+    document.querySelectorAll(".flame").forEach(flame => {
+        flame.classList.add("off");
+    });
+
+    document.querySelectorAll(".smoke").forEach(smoke => {
+        smoke.style.display = "block";
+    });
+
+    document.querySelector(".message").style.display = "none";
+    document.querySelector(".micHint").style.display = "none";
+
+    document.getElementById("afterWish").style.display = "block";
+
+    // Stop microphone after candles are blown
+    if (audioStream) {
+        audioStream.getTracks().forEach(track => track.stop());
+    }
+
+    if (audioContext && audioContext.state !== "closed") {
+        audioContext.close();
+    }
+
+    // Play birthday song
+    birthdaySong.muted = false;
+    birthdaySong.volume = 0.85;
+    birthdaySong.currentTime = 0;
+
+    birthdaySong.play().catch(error => {
+        console.log("Audio playback was blocked or file is missing:", error);
+    });
+
+    // Automatically transition to Page 10
+    setTimeout(() => {
+        showPage10();
+    }, 6000);
+}
+
+// Display Page 10 inside Page 9
+function showPage10() {
+    const frame = document.getElementById("page10Frame");
+
+    frame.onload = () => {
+        frame.style.display = "block";
+    };
+
+    frame.src = "page10.html";
+
+    // Fallback if the load event does not fire as expected
+    setTimeout(() => {
+        frame.style.display = "block";
+    }, 1500);
+}
+</script>
+
+</body>
+</html>

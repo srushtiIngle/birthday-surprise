@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reasons I Love You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      padding: 28px 22px 35px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sticker {
+      position: absolute;
+      font-size: 24px;
+      z-index: 5;
+    }
+    .sticker-1 { top: -10px; left: 14px; transform: rotate(-12deg); }
+    .sticker-2 { top: -8px; right: 16px; transform: rotate(10deg); }
+    .sticker-3 { bottom: 65px; left: 12px; transform: rotate(8deg); }
+    .sticker-4 { bottom: 70px; right: 14px; transform: rotate(-9deg); }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 26px;
+      color: #b33b5c;
+      margin-bottom: 18px;
+    }
+/* Single Photo - Full image without cutting */
+.single-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;        /* ← Changed to contain */
+  object-position: center;
+  background: #fff5f7;        /* Soft background so empty space looks nice */
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  margin: 10px auto 22px;
+  display: block;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: photoIn 0.8s ease 0.3s forwards;
+}
+
+    @keyframes photoIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .reasons {
+      text-align: left;
+      margin: 10px 0 15px;
+    }
+
+    .reason {
+      background: #fff5f7;
+      padding: 12px 15px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      font-size: 14.5px;
+      color: #5c3d4a;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.45;
+      opacity: 0;
+      transform: translateX(20px);
+      animation: reasonIn 0.6s ease forwards;
+    }
+
+    .reason:nth-child(1) { animation-delay: 0.6s; }
+    .reason:nth-child(2) { animation-delay: 0.8s; }
+    .reason:nth-child(3) { animation-delay: 1.0s; }
+    .reason:nth-child(4) { animation-delay: 1.2s; }
+    .reason:nth-child(5) { animation-delay: 1.4s; }
+
+    @keyframes reasonIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .reason span {
+      font-size: 16px;
+      color: #d987a1;
+    }
+
+    .bottom-emojis {
+      font-size: 26px;
+      margin-top: 8px;
+      opacity: 0;
+      animation: photoIn 0.6s ease 1.7s forwards;
+    }
+
+    /* Corner Buttons */
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 24px 16px 30px;
+      }
+      h2 { font-size: 24px; }
+      .single-photo {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="sticker sticker-1">🌸</div>
+    <div class="sticker sticker-2">✨</div>
+    <div class="sticker sticker-3">💕</div>
+    <div class="sticker sticker-4">🦋</div>
+
+    <p class="small-title">There is infinite reasons, but I listed few here</p>
+    <h2>Why I Love You..?</h2>
+
+    <!-- Only One Photo -->
+<img src="images/IMG_2043.jpeg" class="single-photo" alt="My Love">
+❤️
+    <div class="reasons">
+      <div class="reason">
+        <span>1.</span>
+        <div>The way your smile makes everything better.</div>
+      </div>
+      <div class="reason">
+        <span>2.</span>
+        <div>You make me feel safe and loved.</div>
+      </div>
+      <div class="reason">
+        <span>3.</span>
+        <div>Your hugs feel like home.</div>
+      </div>
+      <div class="reason">
+        <span>4.</span>
+        <div>You listen even to my smallest stories.</div>
+      </div>
+      <div class="reason">
+        <span>5.</span>
+        <div>Simply because you are you.</div>
+      </div>
+    </div>
+
+    <div class="bottom-emojis">💗🫂</div>
+  </div>
+
+  <!-- Corner Buttons -->
+  <a href="page2.html" class="corner-btn back-btn">← Back</a>
+  <a href="page4.html" class="corner-btn next-btn">Next 💕</a>
+
+</body>
+</html>

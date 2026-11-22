@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tap to See Magic</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      padding: 30px 22px 40px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sticker {
+      position: absolute;
+      font-size: 24px;
+      z-index: 5;
+    }
+    .sticker-1 { top: -10px; left: 14px; transform: rotate(-12deg); }
+    .sticker-2 { top: -8px; right: 16px; transform: rotate(10deg); }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #b33b5c;
+      margin-bottom: 20px;
+    }
+
+    /* Main interactive area */
+    .reveal-box {
+      width: 100%;
+      height: 280px;
+      background: #fff5f7;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(200,120,150,0.08);
+      cursor: pointer;
+    }
+
+    .message {
+      font-size: 18px;
+      color: #5c3d4a;
+      line-height: 1.6;
+      padding: 10px;
+      transition: all 0.5s ease;
+    }
+
+    .message.hide {
+      opacity: 0;
+      transform: scale(0.8);
+      position: absolute;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.6s ease;
+    }
+
+    .photo.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .tap-hint {
+      font-size: 14px;
+      color: #d987a1;
+      margin-top: 18px;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .final-text {
+      margin-top: 18px;
+      font-size: 15px;
+      color: #5c3d4a;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .final-text.show {
+      opacity: 1;
+    }
+
+    /* Corner Buttons */
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+
+    @media (max-width: 400px) {
+      .reveal-box {
+        height: 260px;
+      }
+      .message {
+        font-size: 16.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="sticker sticker-1">✨</div>
+    <div class="sticker sticker-2">💕</div>
+
+    <p class="small-title">TAP TO REVEAL</p>
+    <h2>Little Words For You</h2>
+
+   <div class="reveal-box" id="revealBox">
+  <!-- Messages -->
+  <div class="message" id="msg1">You are my everything...<br>I love you so much ❤️</div>
+  <div class="message hide" id="msg2">Every moment with you<br>feels like magic ✨</div>
+  <div class="message hide" id="msg3">You make my heart<br>smile every single day 🌸</div>
+  <div class="message hide" id="msg4">I am so lucky<br>to have you in my life ❤️</div>
+
+  <!-- Photos -->
+    <img src="images/9fbf0de3-c5c3-45fd-af6e-1dc874de70ff.png" class="photo" id="photo1" alt="Memory">
+
+ <img src="images/06eed3c5-eb06-44dd-bf9d-e87d497af5c2.jpg" class="photo" id="photo2" alt="Memory">
+
+ <img src="images/1268cda8-a16d-413b-b627-4bac0d39ee1a.jpg" class="photo" id="photo3" alt="Memory">
+
+   <img src="images/903074b7-2e35-4ab3-a707-69da707f9bbd.jpg" class="photo" id="photo4" alt="Memory">
+
+   <img src="images/96c0c5ab-7253-429f-a520-be913ac86b1a.jpg" class="photo" id="photo5" alt="Final Memory">
+</div>
+
+<p class="tap-hint" id="hint">You are always very special to me...❤️</p>
+<p class="final-text" id="finalText">I am the luckiest girl on this earth because I have YOU....💗😘</p>
+  <!-- Corner Buttons -->
+  <a href="page4.html" class="corner-btn back-btn">← Back</a>
+  <a href="page6.html" class="corner-btn next-btn">Next 💕</a>
+
+ <script>
+  const messages = [
+    document.getElementById('msg1'),
+    document.getElementById('msg2'),
+    document.getElementById('msg3'),
+    document.getElementById('msg4')
+  ];
+
+  const photos = [
+    document.getElementById('photo1'),
+    document.getElementById('photo2'),
+    document.getElementById('photo3'),
+    document.getElementById('photo4'),
+    document.getElementById('photo5')
+  ];
+
+  const hint = document.getElementById('hint');
+  const finalText = document.getElementById('finalText');
+  const revealBox = document.getElementById('revealBox');
+
+  let step = 0;
+
+  revealBox.addEventListener('click', () => {
+    if (step >= 8) return;
+
+    if (step % 2 === 0) {
+      // Currently showing a message → hide message + show photo
+      const index = step / 2;
+      messages[index].classList.add('hide');
+      photos[index].classList.add('show');
+    } else {
+      // Currently showing a photo
+      const index = Math.floor(step / 2);
+      photos[index].classList.remove('show');
+
+      if (index < 3) {
+        // Show next message
+        messages[index + 1].classList.remove('hide');
+      } else {
+        // After 4th photo → go directly to final message + photo5
+        photos[4].classList.add('show');
+        finalText.classList.add('show');
+        hint.style.display = 'none';
+      }
+    }
+
+    step++;
+  });
+</script>
+
+</body>
+</html>

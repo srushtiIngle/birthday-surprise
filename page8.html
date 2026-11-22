@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Scratch to Reveal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+  font-family: Georgia, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 15px 90px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: pan-y;
+}
+    
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 340px;
+      border-radius: 28px;
+      padding: 25px 18px 30px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+    }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: #b33b5c;
+      margin-bottom: 18px;
+    }
+
+    /* Vertical Scratch Card */
+    .scratch-container {
+      position: relative;
+      width: 100%;
+      height: 420px;               /* Tall vertical card */
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+
+    .message {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff5f7;
+      padding: 18px 15px;
+      font-size: 13.8px;
+      color: #5c3d4a;
+      line-height: 1.55;
+      text-align: left;
+      z-index: 1;
+      overflow-y: auto;
+    }
+
+    .message .ending {
+      margin-top: 14px;
+      color: #c2185b;
+      font-weight: bold;
+      text-align: center;
+    }
+
+   canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border-radius: 18px;
+  cursor: pointer;
+  touch-action: none;
+}
+    .hint {
+      font-size: 14px;
+      color: #8a5a6d;
+    }
+
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="small-title">SPECIAL MESSAGE</p>
+    <h2>Scratch to Reveal</h2>
+
+    <div class="scratch-container" id="scratchContainer">
+      <div class="message">
+        Hey Baby,<br><br>
+        You mean the world to me...🌍<br><br>
+        Your hair makes me want to run my fingers through it forever..😌<br><br>
+        Your Eyes force me to fall in love with you again and again👀<br><br>
+        Your Nose is so cute that I always feel like take a little kiss😘<br><br>
+        Your lips make me forget everything except you👄<br><br>
+        Your smile is my favourite sight, and my favourite reason to smile..😊<br><br>
+        Your arms feel like the safest place on earth and my forever favourite place🫂<br><br>
+        Your smell is something I wish I could keep with me forever..💗<br><br>
+        Your voice is my favourite sound..📞<br><br>
+        <div class="ending">Your Presence, just having you around makes everything feel best...❤️</div>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+
+    <p class="hint">After scratch, scroll-down to read more baby..</p>
+  </div>
+
+  <a href="page7.html" class="corner-btn back-btn">← Back</a>
+  <a href="page9.html" class="corner-btn next-btn">Next 💕</a>
+
+ 
+<script>
+  const canvas = document.getElementById('scratchCanvas');
+  const ctx = canvas.getContext('2d');
+  const container = document.getElementById('scratchContainer');
+
+  let isDrawing = false;
+  let revealed = false;
+
+  function resize() {
+    const rect = container.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    drawCover(rect.width, rect.height);
+  }
+
+  function drawCover(width, height) {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#f8bbd0';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+
+    for (let i = 0; i < 120; i++) {
+      ctx.beginPath();
+      ctx.arc(
+        Math.random() * width,
+        Math.random() * height,
+        Math.random() * 6 + 2,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+    }
+
+    ctx.fillStyle = '#c2185b';
+    ctx.font = 'bold 17px Georgia';
+    ctx.textAlign = 'center';
+    ctx.fillText('Scratch here 💖', width / 2, height / 2);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
+ 
+let scratchCount = 0;
+
+function scratch(x, y) {
+  if (revealed) return;
+
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(x, y, 30, 0, Math.PI * 2);
+  ctx.fill();
+
+  scratchCount++;
+
+  if (scratchCount % 10 === 0) {
+    checkScratch();
+  }
+}
+
+function checkScratch() {
+  const pixels = ctx.getImageData(
+    0, 0, canvas.width, canvas.height
+  ).data;
+
+  let transparent = 0;
+  let total = 0;
+
+  for (let i = 3; i < pixels.length; i += 64) {
+    total++;
+    if (pixels[i] < 128) transparent++;
+  }
+
+  if (transparent / total >= 0.97) {
+    revealed = true;
+    canvas.style.transition = 'opacity 0.6s ease';
+    canvas.style.opacity = '0';
+
+    setTimeout(() => {
+      canvas.style.display = 'none';
+    }, 600);
+  }
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  if (revealed) return;
+
+  isDrawing = true;
+  canvas.setPointerCapture(e.pointerId);
+
+  const pos = getPos(e);
+  scratch(pos.x, pos.y);
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  if (!isDrawing || revealed) return;
+
+  const pos = getPos(e);
+  scratch(pos.x, pos.y);
+});
+
+canvas.addEventListener('pointerup', () => {
+  isDrawing = false;
+});
+
+canvas.addEventListener('pointercancel', () => {
+  isDrawing = false;
+});
+
+</script>
+
+
+</body>
+</html>

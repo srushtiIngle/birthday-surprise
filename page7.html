@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>I Love You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      padding: 30px 20px 35px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+    }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #b33b5c;
+      margin-bottom: 18px;
+    }
+
+    .letters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 60px;
+      margin-bottom: 15px;
+    }
+
+    .letter {
+      width: 42px;
+      height: 42px;
+      background: #ffe4ec;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #b33b5c;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+
+    .letter.active {
+      background: #d987a1;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .letter.wrong {
+      background: #ffb3b3;
+      animation: shake 0.4s ease;
+    }
+
+    .feedback {
+      height: 28px;
+      font-size: 15px;
+      color: #e74c3c;
+      margin-bottom: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feedback.show {
+      opacity: 1;
+    }
+
+    .teddy-area {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .teddy-area.show {
+      display: flex;
+    }
+
+    .teddy {
+      font-size: 90px;
+      margin-bottom: 6px;
+      animation: bounce 1s infinite alternate;
+    }
+
+    .teddy-text {
+      font-size: 20px;
+      color: #b33b5c;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .big-heart {
+      font-size: 55px;
+      cursor: pointer;
+      animation: pulse 1.2s infinite;
+      user-select: none;
+    }
+
+    .heart-hint {
+      font-size: 14px;
+      color: #8a5a6d;
+      margin-top: 10px;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="small-title">CAN YOU GUESS?</p>
+    <h2>Tap the correct letters in order</h2>
+
+    <div class="letters" id="letters">
+      <div class="letter" data-letter="U">U</div>
+      <div class="letter" data-letter="O">O</div>
+      <div class="letter" data-letter="L">L</div>
+      <div class="letter" data-letter="Y">Y</div>
+      <div class="letter" data-letter="E">E</div>
+      <div class="letter" data-letter="V">V</div>
+      <div class="letter" data-letter="I">I</div>
+      <div class="letter" data-letter="O">O</div>
+    </div>
+
+    <div class="feedback" id="feedback">Wrong! Try again 😢</div>
+
+    <div class="teddy-area" id="teddyArea">
+      <div class="teddy">🧸</div>
+      <div class="teddy-text">I LOVE YOU</div>
+      <div class="big-heart" id="bigHeart">❤️</div>
+      <p class="heart-hint">Tap on this heart to come closer to your surprise</p>
+    </div>
+  </div>
+
+  <a href="page6.html" class="corner-btn back-btn">← Back</a>
+  <a href="page8.html" class="corner-btn next-btn">Next 💕</a>
+
+  <script>
+    const letterDivs = document.querySelectorAll('.letter');
+    const feedback = document.getElementById('feedback');
+    const teddyArea = document.getElementById('teddyArea');
+    const bigHeart = document.getElementById('bigHeart');
+
+    const correctOrder = ['I', 'L', 'O', 'V', 'E', 'Y', 'O', 'U'];
+    let current = 0;
+
+    letterDivs.forEach(letter => {
+      letter.addEventListener('click', handleTap);
+      letter.addEventListener('touchstart', handleTap, {passive: false});
+    });
+
+    function handleTap(e) {
+      e.preventDefault();
+      if (current >= 8) return;
+
+      const tappedLetter = e.currentTarget.getAttribute('data-letter');
+
+      if (tappedLetter === correctOrder[current]) {
+        // Correct
+        e.currentTarget.classList.add('active');
+        current++;
+
+        // Hide feedback if showing
+        feedback.classList.remove('show');
+
+        if (current === 8) {
+          setTimeout(() => {
+            document.getElementById('letters').style.display = 'none';
+            document.querySelector('h2').style.display = 'none';
+            document.querySelector('.small-title').style.display = 'none';
+            feedback.style.display = 'none';
+            teddyArea.classList.add('show');
+          }, 500);
+        }
+      } else {
+        // Wrong
+        e.currentTarget.classList.add('wrong');
+        feedback.classList.add('show');
+
+        setTimeout(() => {
+          e.currentTarget.classList.remove('wrong');
+        }, 400);
+      }
+    }
+
+    // Heart → next page
+    bigHeart.addEventListener('click', goNext);
+    bigHeart.addEventListener('touchstart', goNext, {passive: false});
+
+    function goNext(e) {
+      e.preventDefault();
+      window.location.href = 'page8.html';
+    }
+  </script>
+
+</body>
+</html>

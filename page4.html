@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff0f5, #fff5ee, #fce4ec);
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      padding: 28px 20px 35px;
+      box-shadow: 0 20px 50px rgba(200, 120, 150, 0.18);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sticker {
+      position: absolute;
+      font-size: 24px;
+      z-index: 5;
+    }
+    .sticker-1 { top: -10px; left: 14px; transform: rotate(-12deg); }
+    .sticker-2 { top: -8px; right: 16px; transform: rotate(10deg); }
+    .sticker-3 { bottom: 65px; left: 12px; transform: rotate(8deg); }
+    .sticker-4 { bottom: 70px; right: 14px; transform: rotate(-9deg); }
+
+    .small-title {
+      font-size: 13px;
+      color: #c45c7a;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 26px;
+      color: #b33b5c;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #8a5a6d;
+      margin-bottom: 22px;
+    }
+
+    /* Photo Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .gallery img {
+       width: 180px;
+  height: 180px;
+  object-fit: contain;        /* ← Changed to contain */
+  object-position: center;
+  background: #fff5f7;        /* Soft background so empty space looks nice */
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  margin: 10px auto 22px;
+  display: block;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: photoIn 0.8s ease 0.3s forwards;
+    }
+
+    /* Different shapes */
+    .gallery img:nth-child(1) {
+      border-radius: 18px;
+      animation-delay: 0.2s;
+    }
+    .gallery img:nth-child(2) {
+      border-radius: 50%;
+      height: 130px;
+      animation-delay: 0.45s;
+    }
+    .gallery img:nth-child(3) {
+      border-radius: 16px 16px 30px 16px;
+      animation-delay: 0.7s;
+    }
+    .gallery img:nth-child(4) {
+      border-radius: 20px;
+      transform: rotate(3deg) scale(0.85) translateY(20px);
+      animation-delay: 0.95s;
+    }
+
+    @keyframes photoIn {
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+      }
+    }
+
+    .bottom-text {
+      font-size: 15px;
+      color: #5c3d4a;
+      margin-top: 8px;
+      opacity: 0;
+      animation: photoIn 0.6s ease 1.3s forwards;
+    }
+
+    .bottom-emojis {
+      font-size: 26px;
+      margin-top: 10px;
+      opacity: 0;
+      animation: photoIn 0.6s ease 1.5s forwards;
+    }
+
+    /* Corner Buttons */
+    .corner-btn {
+      position: fixed;
+      bottom: 25px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: Georgia, serif;
+      box-shadow: 0 6px 18px rgba(180, 100, 130, 0.25);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .back-btn {
+      left: 18px;
+      background: #ffe4ec;
+      color: #b33b5c;
+    }
+    .next-btn {
+      right: 18px;
+      background: #d987a1;
+      color: white;
+    }
+
+    /* iPhone */
+    @media (max-width: 400px) {
+      .card {
+        padding: 24px 16px 30px;
+      }
+      h2 { font-size: 24px; }
+      .gallery img {
+        height: 115px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="sticker sticker-1">📸</div>
+    <div class="sticker sticker-2">✨</div>
+    <div class="sticker sticker-3">💕</div>
+    <div class="sticker sticker-4">🌸</div>
+
+    <p class="small-title">My Pasandida Purush..</p>
+    <h2>Handsome You....!❤️</h2>
+    <p class="subtitle">some of your photos from my gallery😘😁 </p>
+
+   <!-- Photo Gallery -->
+<div class="gallery">
+    <img src="images/IMG_4583.jpeg" alt="Memory 1">
+    <img src="images/IMG_1891.jpeg" alt="Memory 2">
+    <img src="images/IMG_2358.png" alt="Memory 3">
+    <img src="images/IMG_2290.jpeg" alt="Memory 4">
+    <img src="images/IMG_4657 (1).jpeg" alt="Memory 5">
+    <img src="images/IMG_1900.jpeg" alt="Memory 6">
+    <img src="images/IMG_4225 (2).jpeg" alt="Memory 7">
+    <img src="images/IMG_2589.jpeg" alt="Memory 8">
+</div>
+
+    <p class="bottom-text">My most Handsome Purush...😍</p>
+    <div class="bottom-emojis">💖</div>
+  </div>
+
+  <!-- Corner Buttons -->
+  <a href="page3.html" class="corner-btn back-btn">← Back</a>
+  <a href="page5.html" class="corner-btn next-btn">Next 💕</a>
+
+</body>
+</html>
